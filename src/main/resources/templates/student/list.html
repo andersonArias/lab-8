@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Students</title>
+</head>
+<body>
+	<div style="width: 100%;">
+		<div>
+			<a href="/">Home</a>
+		</div>
+		<div>
+			<h1>List of Students</h1>
+			<a th:href="@{/student/new}">Add New Student</a><br> <br>
+		</div>
+		<div>
+			<form action="/student/search" method="get">
+				<input id="searchString" name="searchString" type="text" th:value="${searchString}" placeholder="Enter a text to search for students" autofocus>
+				<button id="btnSearch" type="submit">Search</button>
+			</form>
+		</div><br><br>
+		<div>
+			<table border="1" cellpadding="8" cellspacing="0">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Id</th>
+						<th>Number</th>
+						<th>First Name</th>
+						<th>Middle Name</th>
+						<th>Last Name</th>
+						<th>cgpa</th>
+						<th>Enrollment Date</th>
+						<th>Is international</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="student,c : ${students}">
+						<th th:text="${c.count}+${'.'}"></th>
+						<td th:text="${student.id}"></td>
+						<td th:text="${student.number}"></td>
+						<td th:text="${student.firstName}"></td>
+						<td th:text="${student.middleName}"></td>
+						<td th:text="${student.lastName}"></td>
+						<td th:text="${student.cgpa}"></td>
+						<td th:text="${student.enrollmentDate}"></td>
+						<td th:text="${student.isInternational}"></td>
+						<td><a
+							th:href="@{'/student/edit/{studentId}'(studentId=${student.id})}">Edit</a>
+						</td>
+						<td><a
+							th:href="@{'/student/delete/{studentId}'(studentId=${student.id})}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>

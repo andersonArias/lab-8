@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Student Form</title>
+<style>
+div.form-control {
+	padding-bottom: 1em;
+}
+</style>
+</head>
+<body>
+	<div>
+		<div>
+			<a href="/">Home</a> | <a href="/student/list">Students</a>
+		</div>
+		<h1>New Student Form</h1>
+		<form action="/student/new" method="post" th:object="${student}">
+			<div class="form-control">
+				<div>
+					<label for="title">Number</label>
+				</div>
+				<div>
+					<input id="number" name="number" th:value="${student.number}"
+						type="text">
+				</div>
+				<div>
+					<span style="color: red;" th:if="${#fields.hasErrors('number')}"
+						th:errors="*{number}"></span>
+				</div>
+			</div>
+			<div class="form-control">
+				<div>
+					<label for="firstName">First name</label>
+				</div>
+				<div>
+					<input id="firstName" name="firstName"
+						th:value="${student.firstName}" type="text">
+				</div>
+				<div>
+					<span style="color: red;" th:if="${#fields.hasErrors('firstName')}"
+						th:errors="*{firstName}"></span>
+				</div>
+			</div>
+			<div class="form-control">
+				<div>
+					<label for="middleName">Middle name</label>
+				</div>
+				<div>
+					<input id="middleName" name="middleName"
+						th:value="${student.middleName}" type="text">
+				</div>
+			</div>
+			<div class="form-control">
+				<div>
+					<label for="lastName">Last name</label>
+				</div>
+				<div>
+					<input id="lastName" name="lastName" th:value="${student.lastName}"
+						type="text">
+				</div>
+				<div>
+					<span style="color: red;" th:if="${#fields.hasErrors('lastName')}"
+						th:errors="*{lastName}"></span>
+				</div>
+			</div>
+			<div class="form-control">
+				<div>
+					<label for="cgpa">cgpa</label>
+				</div>
+				<div>
+					<input id="cgpa" name="cgpa" th:value="${student.cgpa}"
+						type="number">
+				</div>
+			</div>
+			<div class="form-control">
+				<div>
+					<label for="enrollmentDate">Enrollment date</label>
+				</div>
+				<div>
+					<input id="enrollmentDate" name="enrollmentDate"
+						th:value="${student.enrollmentDate}" type="date">
+				</div>
+				<div>
+					<span style="color: red;" th:if="${#fields.hasErrors('enrollmentDate')}"
+						th:errors="*{enrollmentDate}"></span>
+				</div>
+			</div>
+			<div class="form-control">
+				<div>Is international?</div>
+				<select th:field="*{isInternational}">
+					<option value="true">Yes</option>
+					<option value="false">No</option>
+				</select>
+			</div>
+			<div>
+                <button id="btnSave" type="submit">Save Student</button>
+            </div>
+		</form>
+	</div>
+</body>
+</html>
